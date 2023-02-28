@@ -1,1 +1,10 @@
-test
+[Unit]
+Description=Flask app service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/narefev/cw3-1-
+ExecStart=/home/narefev/cw3-1-/venv/bin/python main.py
+
+[Install]
+WantedBy=multi-user.target
