@@ -3,7 +3,6 @@ from flask import Flask, render_template, jsonify, request
 import logger
 from utils import *
 
-
 app = Flask(__name__)
 
 
@@ -49,19 +48,22 @@ def page_search_by_user(user_name):
     posts = load_posts(user_name=user_name)
     return render_template('user-feed.html', posts=posts)
 
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return 'it works!'
+
+
 # Несуществующие страницы
 @app.errorhandler(404)
 def not_found(e):
     return 'Ошибка 404, запрашиваемая страница не существует.'
 
+
 # Ошибки на стороне сервера
 @app.errorhandler(500)
 def server_error(e):
     return 'ошибка 500, Internal Server Error'
-
-
-
-
 
 
 if __name__ == '__main__':
